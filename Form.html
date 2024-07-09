@@ -15,21 +15,125 @@
 </head>
 <body>
     <main class="">
-        <form class="flex flex-col items-center bg-white p-6 w-full">
+        <form class="flex flex-col items-center bg-white p-6 w-full gap-4">
+
             <section class="w-full h-12 relative">
-                <input id="jobTitle" type="text" placeholder=" " class="input w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm focus:border-black focus:bg-white  outline-none"  />
-                <label for="jobTitle" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Название вакансии</label>
-                <button type="button" id="clearButton" class="clear-button absolute right-2 top-1/2" >
-                    <img src="krest.svg" alt="Очистить" class="w-5 h-5"/>
+                <select name="direction" id="direction" class="w-full h-full pl-4 pr-7 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none">
+                    <option value="" disabled selected> </option> 
+                    <option value="Строительство и ремонт">Строительство и ремонт</option>
+                    <option value="Компьютерные услуги">Строительство и ремонт</option>
+                </select>
+                <!-- <input id="phone" type="" placeholder=" " class="input w-full h-full pl-4 pr-7 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  /> -->
+                <label for="direction" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Выберите направление</label>
+                <button type="button" id="chooseDirection" class="chooseBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="arrow.svg" alt="Раскрыть" class="w-5 h-5"/>
+                </button>   
+                <button type="button" id="clearDirection" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
                 </button>
+
             </section>
-            <button type="submit" class="w-full bg-purple-600 text-white p-2 rounded">Разместить</button>
+
+            <section class="w-full h-12 relative">
+                <input id="job" type="text" placeholder=" " minlength="4" maxlength="20" class="input w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="job" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Название вакансии</label>
+                <button type="button" id="clearJob" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-12 relative">
+                <input id="phone" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="phone" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Телефон</label>
+                <button type="button" id="clearPhone" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-24 relative">
+                <textarea id="respons" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
+                <label for="respons" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Обязанности</label>
+                <button type="button" id="clearRespons" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-24 relative">
+                <textarea id="require" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
+                <label for="require" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Требования</label>
+                <button type="button" id="clearRequire" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-12 relative">
+                <input id="exp" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="exp" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Опыт работы</label>
+                <button type="button" id="clearExp" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-12 relative">
+                <input id="education" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="education" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Образование</label>
+                <button type="button" id="clearEducation" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-12 relative">
+                <input id="schedule" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="schedule" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">График работы</label>
+                <button type="button" id="clearSchedule" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-24 relative">
+                <textarea id="other" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
+                <label for="other" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Другие условия</label>
+                <button type="button" id="clearOther" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <section class="w-full h-12 relative">
+                <input id="salary" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
+                <label for="salary" class="placeholder absolute left-4 top-4 text-gray-500 text-sm">Зарплата</label>
+                <button type="button" id="clearSalary" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
+                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                </button>
+                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            </section>
+
+            <button type="submit" class="w-1/2 bg-purple-600 text-white p-2 rounded">Разместить</button>
         </form>
     </main>
     <script>
-        document.getElementById('clearButton').addEventListener('click', function() {
-            document.getElementById('jobTitle').value = '';
-            document.getElementById('jobTitle').focus();
+        function cleareInput(input, close) {
+            document.getElementById(close).addEventListener('click', function() {
+                    document.getElementById(input).value = '';
+                    document.getElementById(input).focus();
+                });
+        }
+        cleareInput('job','clearJob')
+        cleareInput('phone','clearPhone')
+        cleareInput('salary','clearSalary')
+        cleareInput('response','clearResponse')
+        cleareInput('require','clearRequire')
+        cleareInput('other','clearOther')
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.getElementById('phone');
+            Inputmask({"mask": "+7 (999) 999-9999"}).mask(input);
         });
     </script>
 </body>
