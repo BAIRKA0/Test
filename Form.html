@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма создания вакансии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="test.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <main class="">
+        <form class="flex flex-col items-center bg-white p-6 w-full">
+            <section class="input-container">
+                <input id="jobTitle" class="input" type="text" placeholder=" " />
+                <label for="jobTitle" class="placeholder">Название вакансии</label>
+                <button type="button" class="clear-button" id="clearButton">
+                    <img src="krest.svg" alt="Очистить" />
+                </button>
+            </section>
+
+            <!-- <section class="mb-4 w-full">
+                <div class="h-10 w-full px-3 flex flex-row items-center rounded-lg bg-gray-100 ">
+                    <div class="w-full relative">
+                        <label for="jobTitle" class="absolute inset-y-0 left-0 transition-all duration-300 origin-left"
+                            :class="{ 'text-xs': isFocused, 'text-base': !isFocused }"
+                            :style="{ top: isFocused ? '-1rem' : '50%', transform: isFocused ? 'translateY(0)' : 'translateY(-50%)' }">
+                            Название вакансии</label>
+                        <input type="text" id="jobTitle" class="w-full bg-gray-100 " placeholder=" " required
+                            @focus="isFocused = true" @blur="isFocused = false">
+                    </div>
+                    <button class="w-6 hidden">
+                        <img src="krest.svg" alt="Очистить">
+                    </button>
+                </div>
+            </section> -->
+            <button type="submit" class="w-full bg-purple-600 text-white p-2 rounded">Разместить</button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('jobTitle').value = '';
+            document.getElementById('jobTitle').focus();
+        });
+    </script>
+</body>
+</html>
