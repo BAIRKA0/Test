@@ -47,7 +47,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 }
@@ -55,5 +55,10 @@
 .clear-button img {
     width: 20px;
     height: 20px;
+}
+
+.input:focus ~ .clear-button,
+.input:not(:placeholder-shown) ~ .clear-button {
+    display: flex;
 }
 
