@@ -8,14 +8,13 @@
     background-color: #FFF;
 }
 
-.placeholder {
-    transform-origin: 0 50%;
+/* .placeholder {
     transition: transform 200ms, color 200ms;
-}
+} */
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
-    transform: translateY(-12px) translateX(0px) scale(0.85);
+    transform: translateY(-12px) translateX(2px) scale(0.85);
 }
 
 .clearBtn {
@@ -25,11 +24,11 @@
 
 .input:focus ~ .clearBtn,
 .input:not(:placeholder-shown) ~ .clearBtn {
-    display: flex;
+    display: block;
 }
 
 .chooseBtn {
-    display: flex;
+    display: block;
     transform: translateY(-50%);
 }
 
