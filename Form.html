@@ -7,135 +7,306 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="test.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=2e31d5b4-519f-4ef5-a920-e06c813bbead&suggest_apikey=50f8224d-5573-4e31-8693-f6b1620e9de1&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 7
+            });
+        }
+    </script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
 <body>
     <main class="">
         <form class="flex flex-col items-center bg-white p-6 w-full gap-4">
-            <section class="w-full min-h-12 relative">
-                <!-- <cheakbox class="peer w-full h-12 pl-4 pr-7 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></cheakbox> -->
-                <input id="direction" type="text" placeholder=" " class="peer input w-full h-12 pl-4 pr-7 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none">
-                <label for="direction" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Выберите направление</label>
-                <button type="button" id="chooseDirection" class="chooseBtn absolute right-2 top-6 transform -translate-y-1/2" >
-                    <img src="arrow.svg" alt="Раскрыть" class="w-5 h-5"/>
-                </button>  
-                <button type="button" id="clearDirection" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+            <section class="w-full min-h-12">
+                <button id="direction" type="button" class="peer input flex w-full h-12 pl-3 pt-3 pb-2 bg-gray-200 rounded-lg border-2 border-transparent outline-none relative">
+                    <label id="directionPlaceholder" class="absolute l-0 text-gray-500 text-sm">Выберите направление</label>
+                    <label id="directionValue" class="absolute l-0 text-black"></label>
+                    <img id="directionOpen" src="arrow.svg" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 "/>
+                    <img id="directionClose" src="close.svg" alt="Очистить" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 hidden "/>
                 </button>
                 <section id="directionList" class="hidden mt-2">
                     <ul class="flex flex-wrap gap-2 text-sm">
-                        <li>
-                            <button type="button" id="optionButton" class="p-2 bg-purple-300 rounded">
-                                Строительство и ремонт
-                            </button>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d1" class="hidden absolute w-full h-full" value="Строительство и ремонт">
+                            <label for="d1" class="cursor-pointer">Строительство и ремонт</label> 
                         </li>
-                        <li>
-                            <button type="button" id="optionButton" class="p-2 bg-purple-300 rounded">
-                                Компьютерные услуги
-                            </button>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d2" class="hidden absolute w-full h-full" value="Компьютерные услуги">
+                            <label for="d2" class="cursor-pointer">Компьютерные услуги</label> 
                         </li>
-                        <li>
-                            <button type="button" id="optionButton" class="p-2 bg-purple-300 rounded">
-                                Другие улуги
-                            </button>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d3" class="hidden absolute w-full h-full" value="Другие услуги">
+                            <label for="d3" class="cursor-pointer">Другие услуги</label> 
                         </li>
-                        <li>
-                            <button type="button" id="optionButton" class="p-2 bg-purple-300 rounded">
-                                Бытовые услуги
-                            </button>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d4" class="hidden absolute w-full h-full" value="Бытовые услуги">
+                            <label for="d4" class="cursor-pointer">Бытовые услуги</label> 
                         </li>
-                        <li>
-                            <button type="button" id="optionButton" class="p-2 bg-purple-300 rounded">
-                                Улуги для животных
-                            </button>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d5" class="hidden absolute w-full h-full" value="Услуги для животных">
+                            <label for="d5" class="cursor-pointer">Услуги для животных</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d6" class="hidden absolute w-full h-full" value="Красота и здоровье">
+                            <label for="d6" class="cursor-pointer">Красота и здоровье</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d7" class="hidden absolute w-full h-full" value="Организация праздников">
+                            <label for="d7" class="cursor-pointer">Организация праздников</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d8" class="hidden absolute w-full h-full" value="Деловые услуги">
+                            <label for="d8" class="cursor-pointer">Деловые услуги</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d9" class="hidden absolute w-full h-full" value="Сад и благоустройство">
+                            <label for="d9" class="cursor-pointer">Сад и благоустройство</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="direction" id="d10" class="hidden absolute w-full h-full" value="Ремонт и обслуживание техники">
+                            <label for="d10" class="cursor-pointer">Ремонт и обслуживание техники</label> 
                         </li>
                     </ul>
                 </section>
             </section>
 
-            <section class="w-full h-12 relative">
-                <input id="job" type="text" placeholder=" " minlength="4" maxlength="20" class="peer focus:border-2 focus:border-black focus:bg-white focus: w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="job" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Название вакансии</label>
-                <button type="button" id="clearJob" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="">Ой, вы забыли заполнить это поле!</span> -->
+            <section class="w-full h-12">
+                <section class="w-full relative">
+                    <input id="vacancy" type="text"
+                        class="peer w-full h-full pt-4 pb-2 bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"
+                        placeholder=" " />
+                    <label for="vacancy"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500">
+                        Название вакансии
+                    </label>
+                    <button type="button" id="clearVacancy" class="absolute right-2 top-1/2  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-12 relative">
-                <input id="phone" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="phone" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Телефон</label>
-                <button type="button" id="clearPhone" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            <section class="w-full">
+                <section class="w-full h-10 relative">
+                    <input id="adress" type="text"
+                        class="peer w-full h-full pt-4 pb-2 bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"
+                        placeholder=" " />
+                    <label for="adress"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500">
+                        Адрес офиса
+                    </label>
+                    <button type="button" id="clearAdress" class="absolute right-2 top-1/2  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <section id="places" class="mt-2 flex flex-col hidden">
+                    <span class="">Иркутская область, поселок Марково, квартал Стрижи, д. 15</span>
+                    <span class="">Иркутская область, г. Иркутск, ул. Академика Курчатов, д. 8</span>
+                    <span class="">Иркутская область, г. Иркутск, ул. Вокзальная, д. 5</span>
+                    <div id="map" class="w-[600px] h-[400px] mt-2"></div>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
+            </section>
+            
+            <section class="w-full h-12">
+                <section class="w-full relative">
+                    <input id="phone" type="phone"
+                        class="peer w-full h-full pt-4 pb-2 bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"
+                        placeholder=" " />
+                    <label for="phone"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500">
+                        Телефон
+                    </label>
+                    <button type="button" id="clearPhone" class="absolute right-2 top-1/2  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-24 relative">
-                <textarea id="respons" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
-                <label for="respons" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Обязанности</label>
-                <button type="button" id="clearRespons" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            <section class="w-full">
+                <section class="w-full h-24 relative">
+                    <textarea id="respons" placeholder=" " value=""
+                        class="peer w-full h-full pt-4 pb-2 resize-none bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"></textarea>
+                    <label for="respons"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500"
+                        >Обязанности</label>
+                    <button type="button" id="clearRespons" class="absolute right-2 top-6  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
+            </section>
+            
+            <section class="w-full">
+                <section class="w-full h-24 relative">
+                    <textarea id="require" placeholder=" "
+                        class="peer w-full h-full pt-4 pb-2 resize-none bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3  rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"></textarea>
+                    <label for="require"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500"
+                        >Требования</label>
+                    <button type="button" id="clearRequire" class="absolute right-2 top-6  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-24 relative">
-                <textarea id="require" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
-                <label for="require" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Требования</label>
-                <button type="button" id="clearRequire" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+            <section class="w-full min-h-12">
+                <button id="exp" type="button" class="peer input flex w-full h-12 pl-3 pt-3 pb-2 bg-gray-200 rounded-lg border-2 border-transparent outline-none relative">
+                    <label id="expPlaceholder" class="absolute l-0 text-gray-500 text-sm">Опыт работы</label>
+                    <label id="expValue" class="absolute l-0 text-black"></label>
+                    <img id="expOpen" src="arrow.svg" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 "/>
+                    <img id="expClose" src="close.svg" alt="Очистить" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 hidden "/>
                 </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+                <section id="expList" class="hidden mt-2">
+                    <ul class="flex flex-wrap gap-2 text-sm">
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="exp" id="e1" class="hidden absolute w-full h-full" value="Нет опыта">
+                            <label for="e1" class="cursor-pointer">Нет опыта</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="exp" id="e2" class="hidden absolute w-full h-full" value="От 1 года до 3 лет">
+                            <label for="e2" class="cursor-pointer">От 1 года до 3 лет</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="exp" id="e3" class="hidden absolute w-full h-full" value="От 3 до 6 лет">
+                            <label for="e3" class="cursor-pointer">От 3 до 6 лет</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="exp" id="e4" class="hidden absolute w-full h-full" value="Больше 6">
+                            <label for="e4" class="cursor-pointer">Больше 6</label> 
+                        </li>
+                    </ul>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-12 relative">
-                <input id="exp" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="exp" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Опыт работы</label>
-                <button type="button" id="clearExp" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+            <section class="w-full min-h-12">
+                <button id="education" type="button" class="peer input flex w-full h-12 pl-3 pt-3 pb-2 bg-gray-200 rounded-lg border-2 border-transparent outline-none relative">
+                    <label id="educationPlaceholder" class="absolute l-0 text-gray-500 text-sm">Образование</label>
+                    <label id="educationValue" class="absolute l-0 text-black"></label>
+                    <img id="educationOpen" src="arrow.svg" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 "/>
+                    <img id="educationClose" src="close.svg" alt="Очистить" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 hidden "/>
                 </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+                <section id="educationList" class="hidden mt-2">
+                    <ul class="flex flex-wrap gap-2 text-sm">
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c1" class="hidden absolute w-full h-full" value="Среднее">
+                            <label for="c1" class="cursor-pointer">Среднее</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c2" class="hidden absolute w-full h-full" value="Среднее специальное">
+                            <label for="c2" class="cursor-pointer">Среднее специальное</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c3" class="hidden absolute w-full h-full" value="Неоконченное высшее">
+                            <label for="c3" class="cursor-pointer">Неоконченное высшее</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c4" class="hidden absolute w-full h-full" value="Высшее">
+                            <label for="c4" class="cursor-pointer">Высшее</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c5" class="hidden absolute w-full h-full" value="Бакалавр">
+                            <label for="c5" class="cursor-pointer">Бакалавр</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c6" class="hidden absolute w-full h-full" value="Магистр">
+                            <label for="c6" class="cursor-pointer">Магистр</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c7" class="hidden absolute w-full h-full" value="Кандидат наук">
+                            <label for="c7" class="cursor-pointer">Кандидат наук</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="education" id="c8" class="hidden absolute w-full h-full" value="Доктор наук">
+                            <label for="c8" class="cursor-pointer">Доктор наук</label> 
+                        </li>
+                    </ul>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-12 relative">
-                <input id="education" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="education" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Образование</label>
-                <button type="button" id="clearEducation" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+            <section class="w-full min-h-12">
+                <button id="schedule" type="button" class="peer input flex w-full h-12 pl-3 pt-3 pb-2 bg-gray-200 rounded-lg border-2 border-transparent outline-none relative">
+                    <label id="schedulePlaceholder" class="absolute l-0 text-gray-500 text-sm">График работы</label>
+                    <label id="scheduleValue" class="absolute l-0 text-black"></label>
+                    <img id="scheduleOpen" src="arrow.svg" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 "/>
+                    <img id="scheduleClose" src="close.svg" alt="Очистить" class="absolute right-2 top-6 transform -translate-y-1/2 w-5 h-5 hidden "/>
                 </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+                <section id="scheduleList" class="hidden mt-2">
+                    <ul class="flex flex-wrap gap-2 text-sm">
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="schedule" id="s1" class="hidden absolute w-full h-full" value="Полный день">
+                            <label for="s1" class="cursor-pointer">Полный день</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="schedule" id="s2" class="hidden absolute w-full h-full" value="Сменный график">
+                            <label for="s2" class="cursor-pointer">Сменный график</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="schedule" id="s3" class="hidden absolute w-full h-full" value="Гибгий график">
+                            <label for="s3" class="cursor-pointer">Гибгий график</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="schedule" id="s4" class="hidden absolute w-full h-full" value="Удаленная работа">
+                            <label for="s4" class="cursor-pointer">Удаленная работа</label> 
+                        </li>
+                        <li class="p-2 bg-blue-300 rounded relative">
+                            <input type="radio" name="schedule" id="s5" class="hidden absolute w-full h-full" value="Вахтовый метод">
+                            <label for="s5" class="cursor-pointer">Вахтовый метод</label> 
+                        </li>
+                    </ul>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-12 relative">
-                <input id="schedule" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="schedule" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">График работы</label>
-                <button type="button" id="clearSchedule" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            <section class="w-full">
+                <section class="w-full h-24 relative">
+                    <textarea id="other" placeholder=" "
+                        class="peer w-full h-full pt-4 pb-2 resize-none bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"></textarea>
+                    <label for="other"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500"
+                        >Другие условия</label>
+                    <button type="button" id="clearOther" class="absolute right-2 top-6  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
-            <section class="w-full h-24 relative">
-                <textarea id="other" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"></textarea> 
-                <label for="other" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Другие условия</label>
-                <button type="button" id="clearOther" class="clearBtn absolute right-2 top-6 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
-            </section>
-
-            <section class="w-full h-12 relative">
-                <input id="salary" type="" placeholder=" " class="input  w-full h-full px-4 pt-4 pb-2 bg-gray-200 rounded-lg border-2 border-transparent text-gray-800 text-sm outline-none"  />
-                <label for="salary" class="placeholder absolute left-4 top-4 text-gray-500 text-sm origin-[0_50%]">Зарплата</label>
-                <button type="button" id="clearSalary" class="clearBtn absolute right-2 top-1/2 transform -translate-y-1/2" >
-                    <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
-                </button>
-                <!-- <span class="invisible peer-invalid:visible">Ой, вы забыли заполнить это поле!</span> -->
+            <section class="w-full h-12">
+                <section class="w-full relative">
+                    <input id="salary" type="number" 
+                        class="peer w-full h-full pt-4 pb-2 bg-white outline outline-0 focus:outline-0 disabled:border-0 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-900 placeholder-shown:border-0 placeholder-shown:bg-gray-200 focus:bg-white"
+                        placeholder=" " />
+                    <label for="salary"
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 !overflow-visible truncate leading-tight peer-focus:leading-tight peer-disabled:text-transparent transition-all top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:block before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 before:pointer-events-none before:transition-all after:content[' '] after:block after:flex-grow after:w-2.5 after:h-1.5 after:mt-[6.5px] after:pointer-events-none after:transition-all peer-placeholder-shown:leading-[2.25] text-gray-500">
+                        Зарплата
+                    </label>
+                    <button type="button" id="clearSalary" class="absolute right-2 top-1/2  transform -translate-y-1/2 peer-placeholder-shown:invisible" >
+                        <img src="close.svg" alt="Очистить" class="w-5 h-5"/>
+                    </button>
+                </section>
+                <span class="hidden">Ой, вы забыли заполнить это поле!</span>
             </section>
 
             <button type="submit" class="w-1/2 bg-purple-600 text-white p-2 rounded">Разместить</button>
@@ -143,36 +314,141 @@
     </main>
     <script>
         function cleareInput(input, close) {
-            document.getElementById(close).addEventListener('click', function() {
-                    document.getElementById(input).value = '';
-                    document.getElementById(input).focus();
-                });
-        }
-        cleareInput('job','clearJob')
+                document.getElementById(close).addEventListener('click', function() {
+                        document.getElementById(input).value = '';
+                        document.getElementById(input).focus();
+                    });
+            }
         cleareInput('phone','clearPhone')
+        cleareInput('vacancy','clearVacancy')
+        cleareInput('adress','clearAdress')
         cleareInput('salary','clearSalary')
-        cleareInput('response','clearResponse')
+        cleareInput('respons','clearRespons')
         cleareInput('require','clearRequire')
         cleareInput('other','clearOther')
-        document.addEventListener('DOMContentLoaded', function() {
-            var input = document.getElementById('phone');
-            Inputmask({"mask": "+7 (999) 999-9999"}).mask(input);
+        
+        document.getElementById('direction').addEventListener('click', function() {
+            document.getElementById('directionList').classList.toggle('hidden');
+            document.getElementById('directionOpen').classList.toggle('rotate-180');
+            // document.getElementById('directionClose').classList.toggle('hidden');
         });
-        document.getElementById('chooseDirection').addEventListener('click', function() {
-            var list = document.getElementById('directionList');
-            if (list.classList.contains('hidden')) {
-                list.classList.remove('hidden');
-            } else {
-                list.classList.add('hidden');
-            }
+        document.getElementById('exp').addEventListener('click', function() {
+            document.getElementById('expList').classList.toggle('hidden');
+            document.getElementById('expOpen').classList.toggle('rotate-180');
+            // document.getElementById('expClose').classList.toggle('hidden');
         });
-        var optionButtons = document.getElementsById('optionButton');
-        for (var i = 0; i < optionButtons.length; i++) {
-            optionButtons[i].addEventListener('click', function() {
-                document.getElementById('direction').textContent = this.textContent;
-                document.getElementById('buttonList').style.display = 'none';
+        document.getElementById('education').addEventListener('click', function() {
+            document.getElementById('educationList').classList.toggle('hidden');
+            document.getElementById('educationOpen').classList.toggle('rotate-180');
+            // document.getElementById('educationClose').classList.toggle('hidden');
+        });
+        document.getElementById('schedule').addEventListener('click', function() {
+            document.getElementById('scheduleList').classList.toggle('hidden');
+            document.getElementById('scheduleOpen').classList.toggle('rotate-180');
+            // document.getElementById('scheduleClose').classList.toggle('hidden');
+        });
+
+        function change(label, button, placeholder) {
+            document.getElementById(button).addEventListener('click', function() {
+                console.log(document.getElementById(button).value)
+                document.getElementById(label).textContent = document.getElementById(button).value;
+                document.getElementById(placeholder).classList.add('hidden');
             });
         }
+        change('directionValue','d1','directionPlaceholder')
+        change('directionValue','d2','directionPlaceholder')
+        change('directionValue','d3','directionPlaceholder')
+        change('directionValue','d4','directionPlaceholder')
+        change('directionValue','d5','directionPlaceholder')
+        change('directionValue','d6','directionPlaceholder')
+        change('directionValue','d7','directionPlaceholder')
+        change('directionValue','d8','directionPlaceholder')
+        change('directionValue','d9','directionPlaceholder')
+        change('directionValue','d10','directionPlaceholder')
+
+        change('expValue','e1','expPlaceholder')
+        change('expValue','e2','expPlaceholder')
+        change('expValue','e3','expPlaceholder')
+        change('expValue','e4','expPlaceholder')
+
+        change('educationValue','c1','educationPlaceholder')
+        change('educationValue','c2','educationPlaceholder')
+        change('educationValue','c3','educationPlaceholder')
+        change('educationValue','c4','educationPlaceholder')
+        change('educationValue','c5','educationPlaceholder')
+        change('educationValue','c6','educationPlaceholder')
+        change('educationValue','c7','educationPlaceholder')
+        change('educationValue','c8','educationPlaceholder')
+
+        change('scheduleValue','s1','schedulePlaceholder')
+        change('scheduleValue','s2','schedulePlaceholder')
+        change('scheduleValue','s3','schedulePlaceholder')
+        change('scheduleValue','s4','schedulePlaceholder')
+        change('scheduleValue','s5','schedulePlaceholder')
+        
+        document.getElementById('adress').addEventListener('input', function() {
+            const inputValue = this.value.trim();
+            const places = document.getElementById('places');
+            if (inputValue.length > 0) {
+                places.classList.remove('hidden');
+            } else {
+                places.classList.add('hidden');
+            }
+        }); 
+
+        document.querySelectorAll('input[name="direction"]').forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const selectedLabel = document.querySelector(`label[for="${radio.id}"]`);
+                    document.getElementById('directionValue').value = selectedLabel.value;  
+                    document.querySelectorAll(`label[for^='d']`).forEach((label) => {
+                        label.parentElement.classList.remove('bg-blue-500');
+                    });
+                    selectedLabel.parentElement.classList.add('bg-blue-500');
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="exp"]').forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const selectedLabel = document.querySelector(`label[for="${radio.id}"]`);
+                    document.getElementById('expValue').value = selectedLabel.value;  
+                    document.querySelectorAll(`label[for^='e']`).forEach((label) => {
+                        label.parentElement.classList.remove('bg-blue-500');
+                    });
+                    selectedLabel.parentElement.classList.add('bg-blue-500');
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="education"]').forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const selectedLabel = document.querySelector(`label[for="${radio.id}"]`);
+                    document.getElementById('educationValue').value = selectedLabel.value;  
+                    document.querySelectorAll(`label[for^='c']`).forEach((label) => {
+                        label.parentElement.classList.remove('bg-blue-500');
+                    });
+                    selectedLabel.parentElement.classList.add('bg-blue-500');
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="schedule"]').forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const selectedLabel = document.querySelector(`label[for="${radio.id}"]`);
+                    document.getElementById('scheduleValue').value = selectedLabel.value;  
+                    document.querySelectorAll(`label[for^='s']`).forEach((label) => {
+                        label.parentElement.classList.remove('bg-blue-500');
+                    });
+                    selectedLabel.parentElement.classList.add('bg-blue-500');
+                }
+            });
+        });
+
+
     </script>
 </body>
 </html>
