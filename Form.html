@@ -35,6 +35,7 @@
     <main class="">
         <form id="myForm" class="flex flex-col items-center bg-white p-6 w-full gap-4" onsubmit="return handleFormSubmit(event)">
             <section class="w-full">
+
                 <button id="direction" type="button" class="peer input flex w-full h-12 pl-3 pt-3 pb-2 bg-gray-200 rounded-lg border-2 border-transparent outline-none relative">
                     <label id="directionPlaceholder" class="absolute l-0 text-gray-500 text-sm transition-all">Выберите направление</label>
                     <label id="directionValue" class="absolute l-0 text-black text-sm top-4"></label>
@@ -310,7 +311,8 @@
         </form>
         <article id="notification" class="fixed bottom-2 right-2 bg-green-300 p-3 rounded rounded-lg hidden">Форма успешно отправлена!</article>
     </main>
-    <script>
+    <script setup>
+
         function focusNextInput(event) {
             if (event.key === "Enter") {
                 if (event.altKey || event.shiftKey) {
